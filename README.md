@@ -61,7 +61,7 @@ Then start the service:
 It will, by default, run on PORT 3000. That can be changed using the `PORT` environment
 variable. 
    
-## Environment Variables for Configuration
+### Environment Variables for Configuration
 To summarize, here are the environment variables used for configuration:
 
 * `LDAP_HOST`: The LDAP host to connect to, e.g. `LDAP_HOST=localhost:389`
@@ -74,3 +74,42 @@ To summarize, here are the environment variables used for configuration:
   can edit (e.g. `EDITABLE_ATTRIBUTES=givenName,sn`).
 * `PORT`: Port under which this service is reachable.
   
+## REST API
+Once started, the service exposes a REST API to access a user's LDAP attributes. 
+
+### Authentication & Authorization
+Requests to retrieve or modify a user are authorized using a JSON Web Token (JWT). To retrieve
+a JWT, a user needs to login with their credentials. These credentials need to verify
+against LDAP. Example:
+
+    curl -X POST \
+        -H "Content-Type: application/json" \
+        --data '{"username":"user1", "password": "password1"}'
+        http://localhost:3000/login
+
+If successful, a JWT is sent as a plain string in the response body. E.g.:
+
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZjaHJpc3RsIiwiaWF0IjoxNTQyOTExNDkzLCJleHAiOjE1NDI5MTUwOTN9.2B-Xelx06FiFLXz8q_5pzm26H2s6rv01LUJyLh60AMA
+    
+This JWT will be used to authorize for any further requests. It expires after one hour.
+
+### Retrieving a User Object
+To retrieve the user object from LDAP that corresponds to the authenticated user,
+simply send a `GET` request to the `/user` route:
+
+    curl -X GET \
+        -H "Authorization: The JWT goes here" \
+        http://localhost:3000/user
+        
+### Modifying the User Object
+To modify the user object of an authenticated user, `PUT` the **entire** user object as
+a JSON object.
+
+If any attributes are modified that are not part of `EDITABLE_ATTRIBUTES`, a `400` error
+will be thrown.
+
+    curl -X PUT \
+        -H "Authorization: The JWT goes here" \
+        -H "Content-Type: application/json" \
+        --data '{"attribute": "value"}' \
+        http://localhost:3000/user

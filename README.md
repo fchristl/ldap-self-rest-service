@@ -119,7 +119,7 @@ A Dockerfile is included. To build:
 
     docker build -t ldap-self-rest-service .
     
-To run:
+To run without building:
 
     docker run \
         -e "LDAP_HOST=localhost" \
@@ -128,4 +128,4 @@ To run:
         -e "LDAP_BASE_USER_DN=ou=users,dc=example,dc=org" \
         -e "EDITABLE_ATTRIBUTES=sn,mobile" \
         -p 8080:3000 \
-        ldap-self-rest-service
+        fchristl/ldap-self-rest-service

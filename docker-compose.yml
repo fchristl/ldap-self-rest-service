@@ -36,7 +36,7 @@ services:
     networks:
       - ldap
     environment:
-     - "EDITABLE_FIELDS=[\"sn\", \"mobile\"]"
+     - "EDITABLE_ATTRIBUTES=[\"sn\", \"mobile\"]"
      - "LDAP_SELF_REST_SERVICE_ENDPOINT=http://localhost:8081"
     ports:
     - "8080:80"

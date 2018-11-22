@@ -126,7 +126,7 @@ To run without building:
     docker run \
         -e "LDAP_HOST=localhost" \
         -e "LDAP_BIND_DN=cn=admin,dc=example,dc=org" \
-        -e "LDAP_BIND_PASSWROD=admin" \
+        -e "LDAP_BIND_PASSWORD=admin" \
         -e "LDAP_BASE_USER_DN=ou=users,dc=example,dc=org" \
         -e "EDITABLE_ATTRIBUTES=sn,mobile" \
         -p 8080:3000 \

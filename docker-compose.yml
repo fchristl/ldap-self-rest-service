@@ -1,0 +1,31 @@
+version: '3'
+networks:
+  ldap:
+services:
+  ldap:
+    image: osixia/openldap
+    ports:
+      - "389:389"
+      - "689:689"
+    networks:
+      - ldap
+  phpldapadmin:
+    image:  osixia/phpldapadmin
+    environment:
+      - "PHPLDAPADMIN_LDAP_HOSTS=ldap"
+    networks:
+      - ldap
+    ports:
+      - "6443:443"
+      - "680:80"
+  lbt:
+    image: dtwardow/ldap-self-service-password
+    environment:
+      - "LDAP_BASE=cn=users,dc=example,dc=org"
+      - "LDAP_HOST=ldap"
+      - "LDAP_USER=cn=admin,dc=example,dc=org"
+      - "LDAP_PASS=admin"
+    networks:
+      - ldap
+    ports:
+      - "780:80"

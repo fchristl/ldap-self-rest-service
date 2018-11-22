@@ -87,9 +87,9 @@ against LDAP. Example:
         --data '{"username":"user1", "password": "password1"}'
         http://localhost:3000/login
 
-If successful, a JWT is sent as a plain string in the response body. E.g.:
+If successful, a JWT is sent in a JSON object in the `token` property:
 
-    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZjaHJpc3RsIiwiaWF0IjoxNTQyOTExNDkzLCJleHAiOjE1NDI5MTUwOTN9.2B-Xelx06FiFLXz8q_5pzm26H2s6rv01LUJyLh60AMA
+    {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZjaHJpc3RsIiwiaWF0IjoxNTQyOTExNDkzLCJleHAiOjE1NDI5MTUwOTN9.2B-Xelx06FiFLXz8q_5pzm26H2s6rv01LUJyLh60AMA"}
     
 This JWT will be used to authorize for any further requests. It expires after one hour.
 

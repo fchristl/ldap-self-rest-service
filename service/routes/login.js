@@ -7,7 +7,7 @@ function getLoginRoute(dependencies) {
         const password = req.body.password;
         const isOk = await dependencies.ldapClient.checkPassword(username, password);
         if (isOk) {
-            res.send(await dependencies.authentication.sign({username: username}))
+            res.send({'token': await dependencies.authentication.sign({username: username})})
         } else {
             res.status(401).send();
         }

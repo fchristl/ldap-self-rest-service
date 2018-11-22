@@ -113,3 +113,19 @@ will be thrown.
         -H "Content-Type: application/json" \
         --data '{"attribute": "value"}' \
         http://localhost:3000/user
+        
+## Running in Docker
+A Dockerfile is included. To build:
+
+    docker build -t ldap-self-rest-service .
+    
+To run:
+
+    docker run \
+        -e "LDAP_HOST=localhost" \
+        -e "LDAP_BIND_DN=cn=admin,dc=example,dc=org" \
+        -e "LDAP_BIND_PASSWROD=admin" \
+        -e "LDAP_BASE_USER_DN=ou=users,dc=example,dc=org" \
+        -e "EDITABLE_ATTRIBUTES=sn,mobile" \
+        -p 8080:3000 \
+        ldap-self-rest-service

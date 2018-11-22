@@ -56,7 +56,7 @@ Then start the service:
     LDAP_BASE_USER_DN=cn=users,dc=example,dc=org \
     EDITABLE_ATTRIBUTES=givenName,sn \
     PORT=3000 \
-    node ./node_modules/.bin/ldap-self-service
+    node ./node_modules/.bin/ldap-self-rest-service
     
 It will, by default, run on PORT 3000. That can be changed using the `PORT` environment
 variable. 

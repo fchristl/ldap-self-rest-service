@@ -13,7 +13,7 @@
   },
   "repository": "https://github.com/fchristl/ldap-self-rest-service.git",
   "bin": {
-    "ldap-self-service": "./service/index.js"
+    "ldap-self-rest-service": "./service/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",

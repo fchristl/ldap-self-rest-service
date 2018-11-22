@@ -17,15 +17,28 @@ services:
       - ldap
     ports:
       - "6443:443"
-      - "680:80"
-  lbt:
-    image: dtwardow/ldap-self-service-password
-    environment:
-      - "LDAP_BASE=cn=users,dc=example,dc=org"
-      - "LDAP_HOST=ldap"
-      - "LDAP_USER=cn=admin,dc=example,dc=org"
-      - "LDAP_PASS=admin"
+  ldap-self-rest-service:
+    image: fchristl/ldap-self-rest-service
     networks:
       - ldap
+    environment:
+      - "LDAP_HOST=ldap"
+      - "LDAP_BIND_DN=cn=admin,dc=example,dc=org"
+      - "LDAP_BIND_PASSWORD=admin"
+      - "LDAP_BASE_USER_DN=cn=users,dc=example,dc=org"
+      - "EDITABLE_ATTRIBUTES=sn,mobile"
     ports:
-      - "780:80"
+    - "8081:3000"
+    depends_on:
+      - ldap
+  ldap-self-service:
+    image: fchristl/ldap-self-service
+    networks:
+      - ldap
+    environment:
+     - "EDITABLE_FIELDS=[\"sn\", \"mobile\"]"
+     - "LDAP_REST_SERVICE_ENDPOINT=http://localhost:8081"
+    ports:
+    - "8080:80"
+    depends_on:
+      - ldap-self-rest-service

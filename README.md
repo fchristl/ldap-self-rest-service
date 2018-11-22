@@ -4,6 +4,8 @@ for users on an LDAP server.
 For example, if a user wants to change their given name in an LDAP directory, it could
 be achieved with a `PUT /user`.
 
+This backend goes hand in hand with the Angular-based [LDAP Self Service](https://https://github.com/fchristl/ldap-self-service).
+
 ## Basics
 
 ### Connecting to the LDAP server

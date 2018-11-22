@@ -1,5 +1,5 @@
 {
-  "name": "ldap-self-service",
+  "name": "ldap-self-rest-service",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",

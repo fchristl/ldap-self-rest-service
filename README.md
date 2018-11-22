@@ -46,7 +46,7 @@ a user edit their first and last name.
 ## Running the Service
 To start the service, install this NPM package:
 
-    npm install ldap-self-service
+    npm install ldap-self-rest-service
 
 Then start the service:
 

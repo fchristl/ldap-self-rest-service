@@ -4,6 +4,7 @@ const randomString = require('randomstring');
 class Authentication {
     constructor() {
         this.secret = randomString.generate();
+        console.log(this.secret);
     }
 
     sign(object) {

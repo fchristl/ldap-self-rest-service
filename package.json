@@ -11,6 +11,9 @@
     "md5": "^2.2.1",
     "randomstring": "^1.1.5"
   },
+  "bin": {
+    "ldap-self-service": "./service/index.js"
+  },
   "devDependencies": {
     "@types/express": "^4.16.0",
     "@types/jsonwebtoken": "^8.3.0"

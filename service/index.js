@@ -19,6 +19,7 @@ ObjectHelper.throwErrorIfPropertiesAreMissingInObject([
 
 const ldapClient = new LdapClient({
     host: process.env.LDAP_HOST,
+    port: process.env.LDAP_PORT || 389,
     bindUsername: process.env.LDAP_BIND_DN,
     bindPassword: process.env.LDAP_BIND_PASSWORD,
     baseUserDn: process.env.LDAP_BASE_USER_DN,
